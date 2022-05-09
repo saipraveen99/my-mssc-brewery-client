@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.net.URI;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,5 +24,15 @@ class BreweryClientTest {
         BeerDto dto = breweryClient.getBeerbyId(UUID.randomUUID());
         log.info("getBeerbyId invoked. The received response is :"+dto);
         assertNotNull(dto);
+    }
+
+    @Test
+    void saveNewBeer() {
+        log.info("saveNewBeer Test started");
+        BeerDto beerDto = BeerDto.builder().beerName("my-beer").beerStyle("sweet").build();
+        URI uri = breweryClient.saveNewBeer(beerDto);
+        log.info("saveNewBeer invoked. THe received response is :"+uri);
+        assertNotNull(uri);
+
     }
 }
