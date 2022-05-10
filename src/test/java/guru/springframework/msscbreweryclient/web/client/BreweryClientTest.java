@@ -38,7 +38,16 @@ class BreweryClientTest {
 
     @Test
     void updateBeer() {
+        log.info("updateBeer Test started");
         BeerDto beerDto = BeerDto.builder().beerName("my-beer").build();
         breweryClient.updateBeer(UUID.randomUUID(), beerDto);
+        log.info("updateBeer invoked");
+    }
+
+    @Test
+    void deleteBeer() {
+        log.info("deleteBeer Test started");
+        breweryClient.deleteBeer(UUID.randomUUID());
+        log.info("deleteBeer invoked");
     }
 }
