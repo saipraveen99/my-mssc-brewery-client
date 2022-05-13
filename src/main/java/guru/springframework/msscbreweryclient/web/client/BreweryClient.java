@@ -1,6 +1,7 @@
 package guru.springframework.msscbreweryclient.web.client;
 
 import guru.springframework.msscbreweryclient.web.model.BeerDto;
+import guru.springframework.msscbreweryclient.web.model.BeerDtoV2;
 import guru.springframework.msscbreweryclient.web.model.CustomerDto;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Component
 public class BreweryClient {
 
-    public final String BEER_PATH_V1 = "/api/v1/beer/";
+    public final String BEER_PATH_V1 = "/api/v2/beer/";
     public final String CUSTOMER_PATH_V1 = "/api/v1/customer/";
     private String apihost;
 
@@ -31,7 +32,7 @@ public class BreweryClient {
         return restTemplate.getForObject(apihost + BEER_PATH_V1 + uuid.toString(), BeerDto.class);
     }
 
-    public URI saveNewBeer(BeerDto beerDto){
+    public URI saveNewBeer(BeerDtoV2 beerDto){
         return restTemplate.postForLocation(apihost + BEER_PATH_V1, beerDto);
     }
 
